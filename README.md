@@ -1,4 +1,4 @@
-# SafeX Invoice Generator & Tracker
+# Client Invoice Generator & Tracker
 
 **SafeX Solutions Internship - Week 3 Portfolio Project**
 
