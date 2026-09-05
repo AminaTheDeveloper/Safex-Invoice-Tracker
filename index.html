@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SafeX Invoice Generator & Tracker</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">SafeX Solutions - Week 3 Portfolio Project</p>
+      <h1>Client Invoice Generator & Tracker</h1>
+      <p class="subtitle">Create branded invoices, export PDFs, and track payment status in one browser-based tool.</p>
+    </div>
+    <button id="seedDemoBtn" class="btn btn-secondary">Load Demo Data</button>
+  </header>
+
+  <main class="container">
+    <section class="stats-grid">
+      <article class="stat-card"><span>Total Invoiced</span><strong id="statTotal">$0.00</strong></article>
+      <article class="stat-card"><span>Paid Revenue</span><strong id="statPaid">$0.00</strong></article>
+      <article class="stat-card"><span>Unpaid Revenue</span><strong id="statUnpaid">$0.00</strong></article>
+      <article class="stat-card"><span>Overdue</span><strong id="statOverdue">0</strong></article>
+    </section>
+
+    <section class="panel">
+      <div class="panel-heading">
+        <div><p class="eyebrow">Create</p><h2>New Invoice</h2></div>
+        <button id="resetBtn" class="btn btn-ghost">Reset Form</button>
+      </div>
+
+      <form id="invoiceForm">
+        <div class="form-grid three">
+          <label>Invoice Number<input id="invoiceNumber" required /></label>
+          <label>Issue Date<input id="issueDate" type="date" required /></label>
+          <label>Due Date<input id="dueDate" type="date" required /></label>
+        </div>
+
+        <div class="form-grid two">
+          <label>Client Name<input id="clientName" required placeholder="e.g. Bright Labs" /></label>
+          <label>Client Email<input id="clientEmail" type="email" required placeholder="accounts@example.com" /></label>
+          <label>Client Address<textarea id="clientAddress" rows="2" placeholder="City, Country"></textarea></label>
+          <label>Currency<select id="currency"><option value="$">USD ($)</option><option value="₦">NGN (₦)</option><option value="£">GBP (£)</option><option value="€">EUR (€)</option></select></label>
+        </div>
+
+        <div class="items-heading"><h3>Line Items</h3><button id="addItemBtn" type="button" class="btn btn-secondary">+ Add Item</button></div>
+        <div id="itemsContainer"></div>
+
+        <div class="form-grid three compact">
+          <label>Tax Rate (%)<input id="taxRate" type="number" min="0" step="0.01" value="0" /></label>
+          <label>Status<select id="status"><option>Unpaid</option><option>Paid</option></select></label>
+          <label>Notes<input id="notes" placeholder="Thank you for your business." /></label>
+        </div>
+
+        <div class="invoice-total-box">
+          <div><span>Subtotal</span><strong id="formSubtotal">$0.00</strong></div>
+          <div><span>Tax</span><strong id="formTax">$0.00</strong></div>
+          <div class="grand"><span>Total</span><strong id="formTotal">$0.00</strong></div>
+        </div>
+
+        <div class="actions">
+          <button type="submit" class="btn btn-primary">Save Invoice</button>
+          <button id="saveAndPdfBtn" type="button" class="btn btn-secondary">Save & Download PDF</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="panel">
+      <div class="panel-heading dashboard-heading">
+        <div><p class="eyebrow">Track</p><h2>Invoice Dashboard</h2></div>
+        <div class="filters">
+          <select id="statusFilter"><option value="All">All Statuses</option><option value="Paid">Paid</option><option value="Unpaid">Unpaid</option><option value="Overdue">Overdue</option></select>
+          <input id="searchInput" placeholder="Search client or invoice #" />
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Invoice</th><th>Client</th><th>Due</th><th>Total</th><th>Status</th><th>Actions</th></tr></thead>
+          <tbody id="invoiceTableBody"></tbody>
+        </table>
+      </div>
+      <div id="emptyState" class="empty-state">No invoices yet. Create one above or load demo data.</div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-heading"><div><p class="eyebrow">Relationships</p><h2>Client List</h2></div></div>
+      <div id="clientList" class="client-grid"></div>
+    </section>
+  </main>
+
+  <footer>Built as a SafeX Solutions Week 3 internship portfolio project. Data is stored locally in your browser.</footer>
+  <script src="app.js"></script>
+</body>
+</html>
