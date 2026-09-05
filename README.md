@@ -1,7 +1,9 @@
 # SafeX Invoice Generator & Tracker
 
 **SafeX Solutions Internship - Week 3 Portfolio Project**
+
 **Name:** Aamna Karam
+
 **Internship category:** Web Development (Group 1)
 
 ## Problem Statement
